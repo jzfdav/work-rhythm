@@ -21,7 +21,17 @@
   <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white" alt="Framer Motion" />
 </p>
 
-A calm, passive, clock-like PWA built with a "Tier 0" premium aesthetic. Optimized for high-end Android hardware (OnePlus 13) and one-handed thumb ergonomics.
+A calm, passive, clock-like PWA built to help professionals transition back into the rhythm of office life. Optimized for high-end Android hardware (OnePlus 13).
+
+## 🕰️ Philosophy & Purpose
+
+Office Simulator is a **re-entry companion** for professionals returning to the workplace after a long leave of absence—whether it’s a vacation, parental leave, recovery, or a career break.
+
+Re-adjusting to the rigid structure, recurring meetings, and mental tempo of an office day can be a jarring experience. This app bridges that gap by providing a **low-stakes, simulated workday environment** that helps re-calibrate your internal clock.
+
+- **Mental Re-calibration**: Simulated meetings and tasks help set your mind for a structured day, easing the transition from absolute freedom back to a regular schedule.
+- **Rhythmic Simulation**: Procedurally generated daily and weekly calendars create a familiar office ebb and flow—some days are meeting-heavy, while others focus on "Deep Work."
+- **Passive Preparation**: It doesn't give you real work; it gives you the *rhythm* of work. It’s designed to be a horological anchor that prepares you mentally for the real deal.
 
 ## ✨ Features
 
