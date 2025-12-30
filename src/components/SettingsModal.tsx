@@ -53,38 +53,58 @@ export default function SettingsModal({
 						<div className="modal-header">
 							<h2>Workday Window</h2>
 							<button type="button" onClick={onClose} className="icon-btn">
-								<X size={20} />
+								<X size={20} strokeWidth={1.5} />
 							</button>
 						</div>
 
 						<div className="modal-body">
-							<label>
-								Start Hour
-								<input
-									type="number"
-									min="0"
-									max="23"
-									value={start}
-									onChange={(e) => setStart(Number(e.target.value))}
-								/>
-							</label>
+							<div className="input-group">
+								<span className="input-label">Start Time</span>
+								<div className="time-input-container">
+									<input
+										type="number"
+										min="0"
+										max="23"
+										className="premium-input"
+										value={start}
+										onChange={(e) => setStart(Number(e.target.value))}
+									/>
+									<span className="input-suffix">:00</span>
+								</div>
+							</div>
 
-							<label>
-								End Hour
-								<input
-									type="number"
-									min="0"
-									max="23"
-									value={end}
-									onChange={(e) => setEnd(Number(e.target.value))}
-								/>
-							</label>
+							<div className="input-group">
+								<span className="input-label">End Time</span>
+								<div className="time-input-container">
+									<input
+										type="number"
+										min="0"
+										max="23"
+										className="premium-input"
+										value={end}
+										onChange={(e) => setEnd(Number(e.target.value))}
+									/>
+									<span className="input-suffix">:00</span>
+								</div>
+							</div>
 						</div>
 
 						<div className="modal-footer">
 							<button type="button" onClick={handleSave} className="save-btn">
-								<Check size={18} /> Save
+								<Check size={16} strokeWidth={3} /> Save
 							</button>
+						</div>
+
+						<div className="credits-footer">
+							<p className="credits-text">OFFICE SIMULATOR</p>
+							<p className="credits-text">
+								v
+								{new Date(__BUILD_TIME__)
+									.toISOString()
+									.slice(2, 10)
+									.replace(/-/g, ".")}{" "}
+								• JZFDAV
+							</p>
 						</div>
 					</motion.div>
 				</motion.div>

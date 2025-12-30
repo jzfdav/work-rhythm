@@ -88,8 +88,9 @@ html {
 .modal-backdrop {
 	position: fixed;
 	inset: 0;
-	background: rgba(0, 0, 0, 0.8);
-	backdrop-filter: blur(5px);
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -97,25 +98,49 @@ html {
 }
 
 .modal-card {
-	background: #1e1e1e;
-	border: 1px solid #333;
-	padding: 2rem;
-	border-radius: 12px;
+	background: rgba(20, 20, 20, 0.75);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
+	padding: 2.5rem;
+	border-radius: 24px;
 	width: 90%;
-	max-width: 320px;
+	max-width: 380px;
 	color: var(--text);
+	overflow: hidden;
+	position: relative;
+}
+
+/* Subtle inner glow */
+.modal-card::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 1px;
+	background: linear-gradient(
+		90deg,
+		transparent,
+		rgba(255, 255, 255, 0.1),
+		transparent
+	);
 }
 
 .modal-header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-bottom: 2rem;
+	margin-bottom: 2.5rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .modal-header h2 {
-	font-size: 1.2rem;
+	font-size: 1rem;
 	font-weight: 500;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+	color: var(--text-dim);
 }
 
 .icon-btn {
@@ -123,56 +148,134 @@ html {
 	border: none;
 	color: var(--text-dim);
 	cursor: pointer;
+	padding: 8px;
+	border-radius: 50%;
+	transition: all 0.2s;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
+
 .icon-btn:hover {
 	color: var(--text);
+	background: rgba(255, 255, 255, 0.05);
 }
 
 .modal-body {
 	display: flex;
 	flex-direction: column;
-	gap: 1.5rem;
+	gap: 2rem;
 }
 
-.modal-body label {
+.input-group {
 	display: flex;
-	flex-direction: column;
-	font-size: 0.9rem;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.input-label {
+	font-size: 0.8rem;
 	color: var(--text-dim);
+	text-transform: uppercase;
+	letter-spacing: 0.15em;
+	font-weight: 500;
+}
+
+.time-input-container {
+	position: relative;
+	display: flex;
+	align-items: center;
 	gap: 0.5rem;
 }
 
-.modal-body input {
-	background: #2a2a2a;
-	border: 1px solid #444;
+/* Custom Number Input Style */
+.premium-input {
+	background: transparent;
+	border: none;
 	color: var(--text);
-	padding: 0.5rem;
-	border-radius: 4px;
+	font-size: 2rem;
+	font-weight: 300;
+	width: 3.5rem;
+	text-align: right;
+	font-family: var(--font-main);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+	transition: border-color 0.3s;
+	padding-bottom: 0.2rem;
+	appearance: textfield;
+	-moz-appearance: textfield;
+}
+
+.premium-input::-webkit-outer-spin-button,
+.premium-input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.premium-input:focus {
+	outline: none;
+	border-color: var(--text);
+}
+
+.input-suffix {
 	font-size: 1rem;
+	color: var(--text-dim);
+	margin-left: 0.2rem;
+	font-weight: 300;
 }
 
 .modal-footer {
-	margin-top: 2rem;
+	margin-top: 3rem;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: center;
 }
 
 .save-btn {
-	background: var(--text);
-	color: var(--bg);
+	background: #eee;
+	color: #111;
 	border: none;
-	padding: 0.6rem 1.2rem;
-	border-radius: 4px;
+	padding: 0.8rem 3rem;
+	border-radius: 100px;
+	font-size: 0.9rem;
 	font-weight: 600;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
 	display: flex;
 	align-items: center;
-	gap: 6px;
+	gap: 8px;
 	cursor: pointer;
-	transition: opacity 0.2s;
+	transition:
+		transform 0.2s,
+		box-shadow 0.2s;
+	box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
 }
 
 .save-btn:hover {
-	opacity: 0.9;
+	transform: translateY(-1px);
+	box-shadow: 0 6px 16px rgba(255, 255, 255, 0.15);
+}
+
+.save-btn:active {
+	transform: translateY(0);
+}
+
+/* Credits Footer */
+.credits-footer {
+	margin-top: 2.5rem;
+	text-align: center;
+	opacity: 0.3;
+	transition: opacity 0.3s;
+}
+
+.credits-footer:hover {
+	opacity: 0.6;
+}
+
+.credits-text {
+	font-size: 0.7rem;
+	color: var(--text);
+	font-family: monospace;
+	letter-spacing: 0.05em;
+	line-height: 1.6;
 }
 
 /* Intro Overlay */
@@ -212,9 +315,11 @@ html {
 	0% {
 		opacity: 0.4;
 	}
+
 	50% {
 		opacity: 0.8;
 	}
+
 	100% {
 		opacity: 0.4;
 	}
