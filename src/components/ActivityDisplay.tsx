@@ -36,11 +36,16 @@ export default function ActivityDisplay({ activity }: Props) {
 					<motion.h1
 						className="activity-label"
 						variants={{
-							hidden: { opacity: 0, y: 15 },
+							hidden: { opacity: 0, y: 15, fontWeight: 300 },
 							visible: {
 								opacity: 1,
 								y: 0,
-								transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
+								fontWeight: 500,
+								transition: {
+									opacity: { duration: 0.8 },
+									y: { duration: 0.8 },
+									fontWeight: { duration: 2, ease: "easeInOut" },
+								},
 							},
 						}}
 					>
@@ -49,8 +54,15 @@ export default function ActivityDisplay({ activity }: Props) {
 					<motion.p
 						className="activity-context"
 						variants={{
-							hidden: { opacity: 0 },
-							visible: { opacity: 1, transition: { duration: 1 } },
+							hidden: { opacity: 0, fontWeight: 300 },
+							visible: {
+								opacity: 1,
+								fontWeight: 400,
+								transition: {
+									opacity: { duration: 1 },
+									fontWeight: { duration: 2.5, ease: "easeInOut" },
+								},
+							},
 						}}
 					>
 						{activity.context}

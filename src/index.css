@@ -1,9 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 :root {
-	--bg: #121212;
-	--text: #e0e0e0;
-	--text-dim: #606060;
+	--bg: #050505;
+	--text: #ffffff;
+	--text-dim: rgba(255, 255, 255, 0.4);
 	--accent: #ffffff;
-	--font-main: "Inter", system-ui, -apple-system, sans-serif;
+	--font-main: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
