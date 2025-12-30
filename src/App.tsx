@@ -5,34 +5,17 @@ import ActivityDisplay from "./components/ActivityDisplay";
 import IntroOverlay from "./components/IntroOverlay";
 import SettingsModal from "./components/SettingsModal";
 import { getSchedule } from "./logic/scheduler";
+import { useCurrentTime } from "./logic/useCurrentTime";
 import { type Settings, SettingsStore } from "./store/settings";
 import "./styles/app.css";
 
 export default function App() {
 	const [settings, setSettings] = useState<Settings>(SettingsStore.load());
-	const [now, setNow] = useState(new Date());
+	const now = useCurrentTime();
 	const [showSettings, setShowSettings] = useState(false);
 	const [showIntro, setShowIntro] = useState(!settings.hasSeenIntro);
 
 	const schedule = getSchedule(now, settings);
-
-	// Time Loop: Sync to minute
-	useEffect(() => {
-		const tick = () => setNow(new Date());
-		let intervalId: ReturnType<typeof setInterval> | null = null;
-
-		// Initial sync
-		const msToNextMin = 60000 - (Date.now() % 60000);
-		const timerId = setTimeout(() => {
-			tick();
-			intervalId = setInterval(tick, 60000);
-		}, msToNextMin);
-
-		return () => {
-			clearTimeout(timerId);
-			if (intervalId) clearInterval(intervalId);
-		};
-	}, []);
 
 	// Update title
 	useEffect(() => {

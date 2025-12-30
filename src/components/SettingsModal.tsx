@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Check, X } from "lucide-react";
 import { useState } from "react";
 import { type Settings, SettingsStore } from "../store/settings";
+import SegmentedControl from "./SegmentedControl";
 import WheelPicker from "./WheelPicker";
 
 interface Props {
@@ -70,31 +71,15 @@ export default function SettingsModal({
 						</div>
 
 						<div className="modal-body">
-							<div className="segmented-control">
-								<button
-									type="button"
-									aria-pressed={format === "24h"}
-									className={`segmented-option ${format === "24h" ? "active" : ""}`}
-									onClick={() => setFormat("24h")}
-								>
-									24-HOUR
-								</button>
-								<button
-									type="button"
-									aria-pressed={format === "12h"}
-									className={`segmented-option ${format === "12h" ? "active" : ""}`}
-									onClick={() => setFormat("12h")}
-								>
-									12-HOUR
-								</button>
-								<div
-									className="segmented-slider"
-									style={{
-										left: format === "24h" ? "2px" : "calc(50% - 1px)",
-										width: "50%",
-									}}
-								/>
-							</div>
+							<SegmentedControl
+								label="Time Format"
+								value={format}
+								onChange={setFormat}
+								options={[
+									{ label: "24-HOUR", value: "24h" },
+									{ label: "12-HOUR", value: "12h" },
+								]}
+							/>
 
 							<div
 								style={{

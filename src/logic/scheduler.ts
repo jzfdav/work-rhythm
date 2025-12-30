@@ -37,19 +37,17 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 
 	// 2. Workday Window Check
 	const { workdayStart: start, workdayEnd: end } = settings;
-
-	// Handle invalid range (start == end)
 	if (start === end) return OFF_HOURS;
 
 	const startMins = start * 60;
-	const endMins = end * 60;
+	const endMins = (end < start ? end + 24 : end) * 60; // Absolute end in minutes from day start
 
-	const isInsideWindow =
-		start < end
-			? totalMinutes >= startMins && totalMinutes < endMins
-			: totalMinutes >= startMins || totalMinutes < endMins;
+	// Normalize current time relative to window start
+	// If it's 1am and start is 10pm, normalized is 3 hours (180 mins)
+	const normalizedCurrent =
+		totalMinutes < startMins ? totalMinutes + 1440 : totalMinutes;
 
-	if (!isInsideWindow) {
+	if (normalizedCurrent < startMins || normalizedCurrent >= endMins) {
 		return OFF_HOURS;
 	}
 
@@ -59,7 +57,7 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 
 	// 4. Find current block
 	const currentBlock = blocks.find(
-		(b) => totalMinutes >= b.start && totalMinutes < b.end,
+		(b) => normalizedCurrent >= b.start && normalizedCurrent < b.end,
 	);
 
 	return currentBlock
@@ -91,51 +89,44 @@ function getBlocksForPattern(
 		{ start: t(5, 30), end: endMins, label: "Focus", context: "Afternoon" },
 	];
 
-	// Apply Enhancements
+	// Filter out blocks that fall entirely outside the window
+	let blocks = baseSchedule.filter((b) => b.start < endMins);
+
+	// Clamp the last block to endMins
+	if (blocks.length > 0) {
+		blocks[blocks.length - 1].end = endMins;
+	}
+
+	// Pattern-specific overrides
 	if (pattern === "MEETING_HEAVY") {
-		// Wed: Extra meeting at 2pm (relative to start) if it fits
-		// Replacing part of Team Sync or Focus
 		const meetingStart = t(5);
 		const meetingEnd = t(6);
 		if (meetingEnd < endMins) {
-			// Insert/Overwrite logic would go here.
-			// For simplicity/robustness, we'll just override the specific time range lookup
-			// But since we are generating blocks, let's just patch the list.
-			// Actually, easiest to just map the special cases in the finder, but let's stick to list.
-			return [
-				...baseSchedule.filter((b) => b.end <= meetingStart), // Before
+			blocks = [
+				...blocks.filter((b) => b.end <= meetingStart),
 				{
 					start: meetingStart,
 					end: meetingEnd,
 					label: "All-Hands",
 					context: "Afternoon",
 				},
-				...baseSchedule.filter((b) => b.start >= meetingEnd), // After
+				...blocks.filter((b) => b.start >= meetingEnd),
 			];
 		}
 	}
 
 	if (pattern === "LIGHT_FRIDAY") {
-		// Fri: Wrap up 1 hr early (Display 'Wrap Up' instead of Focus)
-		const lastBlock = baseSchedule[baseSchedule.length - 1];
-		if (lastBlock) {
-			return [
-				...baseSchedule.slice(0, -1),
-				{
-					start: lastBlock.start,
-					end: endMins - 30,
-					label: "Focus",
-					context: "Afternoon",
-				},
-				{
-					start: endMins - 30,
-					end: endMins,
-					label: "Wrap Up",
-					context: "Weekend Ready",
-				},
-			];
-		}
+		const wrapUpStart = Math.max(startMins, endMins - 30);
+		blocks = [
+			...blocks.filter((b) => b.end <= wrapUpStart),
+			{
+				start: wrapUpStart,
+				end: endMins,
+				label: "Wrap Up",
+				context: "Weekend Ready",
+			},
+		];
 	}
 
-	return baseSchedule;
+	return blocks;
 }
