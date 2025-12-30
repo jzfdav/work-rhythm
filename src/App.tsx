@@ -47,11 +47,11 @@ export default function App() {
 				className="settings-trigger"
 				onClick={() => setShowSettings(true)}
 				aria-label="Settings"
-				whileHover={{ scale: 1.1, rotate: 15 }}
-				whileTap={{ scale: 0.9 }}
-				transition={{ type: "spring", stiffness: 400, damping: 17 }}
+				initial={{ y: 20, opacity: 0, x: "-50%" }}
+				animate={{ y: 0, opacity: 1, x: "-50%" }}
+				transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
 			>
-				<SettingsIcon size={24} strokeWidth={1.5} />
+				<SettingsIcon size={18} strokeWidth={1.5} />
 			</motion.button>
 
 			<SettingsModal
