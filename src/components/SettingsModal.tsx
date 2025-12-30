@@ -50,6 +50,7 @@ export default function SettingsModal({
 					animate={{ opacity: 1, backdropFilter: "blur(8px)" }}
 					exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
 					transition={{ duration: 0.4 }}
+					onClick={onClose}
 				>
 					<motion.div
 						className="modal-card"
@@ -62,6 +63,7 @@ export default function SettingsModal({
 							damping: 25,
 							mass: 0.8,
 						}}
+						onClick={(e) => e.stopPropagation()}
 					>
 						<div className="modal-header">
 							<h2>Preferences</h2>
@@ -120,7 +122,20 @@ export default function SettingsModal({
 						</div>
 
 						<div className="modal-footer">
-							<button type="button" onClick={handleSave} className="save-btn">
+							<button
+								type="button"
+								onClick={onClose}
+								className="cancel-btn"
+								style={{ flex: 1 }}
+							>
+								Cancel
+							</button>
+							<button
+								type="button"
+								onClick={handleSave}
+								className="save-btn"
+								style={{ flex: 2 }}
+							>
 								<Check size={16} strokeWidth={3} /> Save
 							</button>
 						</div>
