@@ -17,8 +17,8 @@ export default defineConfig({
         name: 'Office Simulator',
         short_name: 'Office',
         description: 'A calm office simulator.',
-        theme_color: '#121212',
-        background_color: '#121212',
+        theme_color: '#050505',
+        background_color: '#050505',
         display: 'standalone',
         icons: [
           {

@@ -10,7 +10,6 @@ import { getSchedule } from "./logic/scheduler";
 import { getThemeForTime } from "./logic/theme";
 import { useCurrentTime } from "./logic/useCurrentTime";
 import { type Settings, SettingsStore } from "./store/settings";
-import "./styles/app.css";
 
 export default function App() {
 	const [settings, setSettings] = useState<Settings>(SettingsStore.load());
