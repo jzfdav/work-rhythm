@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { Settings as SettingsIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import ActivityDisplay from "./components/ActivityDisplay";
@@ -48,14 +49,17 @@ export default function App() {
 
 			<ActivityDisplay activity={schedule} />
 
-			<button
+			<motion.button
 				type="button"
 				className="settings-trigger"
 				onClick={() => setShowSettings(true)}
 				aria-label="Settings"
+				whileHover={{ scale: 1.1, rotate: 15 }}
+				whileTap={{ scale: 0.9 }}
+				transition={{ type: "spring", stiffness: 400, damping: 17 }}
 			>
 				<SettingsIcon size={24} strokeWidth={1.5} />
-			</button>
+			</motion.button>
 
 			<SettingsModal
 				isOpen={showSettings}
