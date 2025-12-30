@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { Settings as SettingsIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import ActivityDisplay from "./components/ActivityDisplay";
@@ -17,19 +17,21 @@ export default function App() {
 	const schedule = getSchedule(now, settings);
 
 	// Time Loop: Sync to minute
-	// Time Loop: Sync to minute
 	useEffect(() => {
 		const tick = () => setNow(new Date());
+		let intervalId: ReturnType<typeof setInterval> | null = null;
 
 		// Initial sync
 		const msToNextMin = 60000 - (Date.now() % 60000);
-		const timer = setTimeout(() => {
+		const timerId = setTimeout(() => {
 			tick();
-			const interval = setInterval(tick, 60000);
-			return () => clearInterval(interval);
+			intervalId = setInterval(tick, 60000);
 		}, msToNextMin);
 
-		return () => clearTimeout(timer);
+		return () => {
+			clearTimeout(timerId);
+			if (intervalId) clearInterval(intervalId);
+		};
 	}, []);
 
 	// Update title
@@ -45,7 +47,9 @@ export default function App() {
 
 	return (
 		<main className="app-container">
-			{showIntro && <IntroOverlay onDismiss={handleDismissIntro} />}
+			<AnimatePresence>
+				{showIntro && <IntroOverlay onDismiss={handleDismissIntro} />}
+			</AnimatePresence>
 
 			<ActivityDisplay activity={schedule} />
 

@@ -24,14 +24,16 @@ export default function WheelPicker({
 	onChange,
 	format,
 }: Props) {
-	const y = useMotionValue(0);
+	// Offset logic: The list is centered in a container of 3 items.
+	// To have item 0 in the center, y needs to be ITEM_HEIGHT (50px).
+	const y = useMotionValue(ITEM_HEIGHT);
 	const [currentIndex, setCurrentIndex] = useState(options.indexOf(value));
 
 	// Initial position
 	useEffect(() => {
 		const idx = options.indexOf(value);
 		if (idx !== -1) {
-			y.set(-idx * ITEM_HEIGHT);
+			y.set(-(idx - 1) * ITEM_HEIGHT);
 			setCurrentIndex(idx);
 		}
 	}, [value, options, y]);
@@ -40,12 +42,12 @@ export default function WheelPicker({
 		const currentY = y.get();
 		// Momentum calculation
 		const velocity = info.velocity.y;
-		const targetTranslateY = currentY + velocity * 0.2; // Factor for momentum
+		const targetTranslateY = currentY + velocity * 0.15;
 
-		const idx = Math.round(-targetTranslateY / ITEM_HEIGHT);
+		const idx = Math.round(-(targetTranslateY - ITEM_HEIGHT) / ITEM_HEIGHT);
 		const clampedIdx = Math.max(0, Math.min(options.length - 1, idx));
 
-		animate(y, -clampedIdx * ITEM_HEIGHT, {
+		animate(y, -(clampedIdx - 1) * ITEM_HEIGHT, {
 			type: "spring",
 			stiffness: 400,
 			damping: 30,
@@ -58,7 +60,7 @@ export default function WheelPicker({
 	// Vibrate on change (Haptic tick)
 	useEffect(() => {
 		const unsubscribe = y.on("change", (latest) => {
-			const idx = Math.round(-latest / ITEM_HEIGHT);
+			const idx = Math.round(-(latest - ITEM_HEIGHT) / ITEM_HEIGHT);
 			if (idx !== currentIndex && idx >= 0 && idx < options.length) {
 				setCurrentIndex(idx);
 				if ("vibrate" in navigator) {
@@ -85,8 +87,8 @@ export default function WheelPicker({
 			<motion.div
 				drag="y"
 				dragConstraints={{
-					top: -(options.length - 1) * ITEM_HEIGHT,
-					bottom: 0,
+					top: -(options.length - 2) * ITEM_HEIGHT,
+					bottom: ITEM_HEIGHT,
 				}}
 				dragElastic={0.1}
 				onDragEnd={handleDragEnd}
@@ -134,9 +136,9 @@ function PickerItem({
 	index: number;
 }) {
 	const range = [
+		(index - 2) * -ITEM_HEIGHT,
 		(index - 1) * -ITEM_HEIGHT,
 		index * -ITEM_HEIGHT,
-		(index + 1) * -ITEM_HEIGHT,
 	];
 
 	const opacity = useTransform(y, range, [0.3, 1, 0.3]);

@@ -36,10 +36,20 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 	if (day === 0 || day === 6) return OFF_HOURS;
 
 	// 2. Workday Window Check
-	const startMins = settings.workdayStart * 60;
-	const endMins = settings.workdayEnd * 60;
+	const { workdayStart: start, workdayEnd: end } = settings;
 
-	if (totalMinutes < startMins || totalMinutes >= endMins) {
+	// Handle invalid range (start == end)
+	if (start === end) return OFF_HOURS;
+
+	const startMins = start * 60;
+	const endMins = end * 60;
+
+	const isInsideWindow =
+		start < end
+			? totalMinutes >= startMins && totalMinutes < endMins
+			: totalMinutes >= startMins || totalMinutes < endMins;
+
+	if (!isInsideWindow) {
 		return OFF_HOURS;
 	}
 
@@ -54,7 +64,7 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 
 	return currentBlock
 		? { label: currentBlock.label, context: currentBlock.context }
-		: { label: "Transition", context: "Flow" }; // Fallback
+		: { label: "Focus", context: "General Work" };
 }
 
 interface Block {
