@@ -15,12 +15,14 @@
 body,
 html {
 	height: 100%;
-	background: var(--bg);
+	background: #050505;
 	color: var(--text);
 	font-family: var(--font-main);
 	overflow: hidden;
 	user-select: none;
 	-webkit-user-select: none;
+	overscroll-behavior: none;
+	-webkit-font-smoothing: antialiased;
 }
 
 #root {
@@ -31,14 +33,15 @@ html {
 }
 
 .app-container {
-	min-height: 100vh;
+	min-height: 100dvh;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	padding: 2rem;
+	padding: env(safe-area-inset-top) env(safe-area-inset-right)
+		env(safe-area-inset-bottom) env(safe-area-inset-left);
 	position: relative;
-	z-index: 10;
+	z-index: 2;
 }
 
 /* Dynamic Background */

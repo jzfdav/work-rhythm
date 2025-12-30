@@ -7,6 +7,7 @@ import IntroOverlay from "./components/IntroOverlay";
 import ProgressLine from "./components/ProgressLine";
 import SettingsModal from "./components/SettingsModal";
 import { getSchedule } from "./logic/scheduler";
+import { getThemeForTime } from "./logic/theme";
 import { useCurrentTime } from "./logic/useCurrentTime";
 import { type Settings, SettingsStore } from "./store/settings";
 import "./styles/app.css";
@@ -23,6 +24,15 @@ export default function App() {
 	useEffect(() => {
 		document.title = `${schedule.label} - Office Simulator`;
 	}, [schedule.label]);
+
+	// Update theme-color for PWA status bar
+	useEffect(() => {
+		const theme = getThemeForTime(now);
+		const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+		if (metaThemeColor) {
+			metaThemeColor.setAttribute("content", theme.color1);
+		}
+	}, [now]);
 
 	const handleDismissIntro = () => {
 		setShowIntro(false);
