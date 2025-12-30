@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import ActivityDisplay from "./components/ActivityDisplay";
 import DynamicBackground from "./components/DynamicBackground";
 import IntroOverlay from "./components/IntroOverlay";
+import ProgressLine from "./components/ProgressLine";
 import SettingsModal from "./components/SettingsModal";
 import { getSchedule } from "./logic/scheduler";
 import { useCurrentTime } from "./logic/useCurrentTime";
@@ -32,6 +33,7 @@ export default function App() {
 	return (
 		<main className="app-container">
 			<DynamicBackground now={now} />
+			<ProgressLine progress={schedule.progress} />
 			<AnimatePresence>
 				{showIntro && <IntroOverlay onDismiss={handleDismissIntro} />}
 			</AnimatePresence>

@@ -10,9 +10,14 @@ import type { Settings } from "../store/settings";
 export interface Activity {
 	label: string;
 	context: string;
+	progress: number; // 0 to 1
 }
 
-const OFF_HOURS: Activity = { label: "Off Hours", context: "Personal Time" };
+const OFF_HOURS: Activity = {
+	label: "Off Hours",
+	context: "Personal Time",
+	progress: 1,
+};
 
 // Weekday variations (0=Sun, 6=Sat)
 const PATTERNS: Record<number, string> = {
@@ -43,7 +48,6 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 	const endMins = (end < start ? end + 24 : end) * 60; // Absolute end in minutes from day start
 
 	// Normalize current time relative to window start
-	// If it's 1am and start is 10pm, normalized is 3 hours (180 mins)
 	const normalizedCurrent =
 		totalMinutes < startMins ? totalMinutes + 1440 : totalMinutes;
 
@@ -60,9 +64,19 @@ export function getSchedule(date: Date, settings: Settings): Activity {
 		(b) => normalizedCurrent >= b.start && normalizedCurrent < b.end,
 	);
 
-	return currentBlock
-		? { label: currentBlock.label, context: currentBlock.context }
-		: { label: "Focus", context: "General Work" };
+	if (!currentBlock) {
+		return { label: "Focus", context: "General Work", progress: 1 };
+	}
+
+	const blockDuration = currentBlock.end - currentBlock.start;
+	const blockElapsed = normalizedCurrent - currentBlock.start;
+	const progress = blockElapsed / blockDuration;
+
+	return {
+		label: currentBlock.label,
+		context: currentBlock.context,
+		progress,
+	};
 }
 
 interface Block {
