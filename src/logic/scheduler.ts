@@ -131,7 +131,12 @@ export function generateDailyAgenda(
 			// Long blocks
 			if (r < 0.8) {
 				const len = 60 + Math.floor(rng() * 120); // 1-3h
-				addBlock(len, "Core Work", "Primary Project", "work");
+				addBlock(
+					len,
+					"Core Work",
+					settings.projectName || "Primary Project",
+					"work",
+				);
 			} else {
 				const len = 15 + Math.floor(rng() * 30);
 				addBlock(len, "Break", "Rest", "break");
@@ -152,7 +157,12 @@ export function generateDailyAgenda(
 				addBlock(45, "Lunch", "Break", "break"); // Try to squeeze lunch in middle
 			} else {
 				if (r < 0.4) {
-					addBlock(30 + Math.floor(rng() * 60), "Core Work", "Project", "work");
+					addBlock(
+						30 + Math.floor(rng() * 60),
+						"Core Work",
+						settings.projectName || "Project",
+						"work",
+					);
 				} else {
 					addBlock(30, "Team Sync", "Recurring", "meeting");
 				}

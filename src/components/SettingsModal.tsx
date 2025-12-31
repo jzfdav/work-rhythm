@@ -21,6 +21,9 @@ export default function SettingsModal({
 	const [start, setStart] = useState(currentSettings.workdayStart);
 	const [end, setEnd] = useState(currentSettings.workdayEnd);
 	const [format, setFormat] = useState(currentSettings.timeFormat);
+	const [projectName, setProjectName] = useState(
+		currentSettings.projectName || "Primary Project",
+	);
 
 	// Reset local state when modal opens to ensure we start from saved values
 	useEffect(() => {
@@ -28,6 +31,7 @@ export default function SettingsModal({
 			setStart(currentSettings.workdayStart);
 			setEnd(currentSettings.workdayEnd);
 			setFormat(currentSettings.timeFormat);
+			setProjectName(currentSettings.projectName || "Primary Project");
 		}
 	}, [isOpen, currentSettings]);
 
@@ -36,6 +40,7 @@ export default function SettingsModal({
 			workdayStart: start,
 			workdayEnd: end,
 			timeFormat: format,
+			projectName,
 		});
 		onUpdate(updated);
 		onClose();
@@ -127,6 +132,38 @@ export default function SettingsModal({
 										format={formatHour}
 									/>
 								</div>
+							</div>
+
+							<div style={{ marginTop: "1.5rem" }}>
+								<label
+									className="input-label"
+									style={{ marginBottom: "0.5rem", display: "block" }}
+								>
+									Project Name
+									<input
+										type="text"
+										value={projectName}
+										onChange={(e) => setProjectName(e.target.value)}
+										style={{
+											width: "100%",
+											background: "rgba(255,255,255,0.05)",
+											border: "1px solid rgba(255,255,255,0.1)",
+											borderRadius: "8px",
+											padding: "0.8rem",
+											marginTop: "0.5rem",
+											color: "#fff",
+											fontSize: "1rem",
+											outline: "none",
+											display: "block",
+										}}
+										onFocus={(e) => {
+											e.target.style.borderColor = "rgba(255,255,255,0.3)";
+										}}
+										onBlur={(e) => {
+											e.target.style.borderColor = "rgba(255,255,255,0.1)";
+										}}
+									/>
+								</label>
 							</div>
 						</div>
 

@@ -39,8 +39,10 @@ Re-adjusting to the rigid structure, recurring meetings, and mental tempo of an 
 ## ✨ Features
 
 - **Chrono-Dynamic Background**: Procedural mesh gradients that evolve minute-by-minute.
-- **Dynamic Agenda**: Unique daily schedules generated with diverse "flavors" (Meeting Intesive, Deep Focus, etc.).
-- **Workload Balance**: Visualizes the varying intensity of a workday, from "chaotic" fire-fighting to "balanced" flows.
+- **Dynamic Agenda**: Unique daily schedules generated with diverse "flavors" (Collaborative, Focused, etc.).
+- **Workload Balance**: Visualizes the varying intensity of a workday.
+- **Custom Projects**: Set your own "Project Name" in settings to ground the simulation in your reality.
+- **Contextual Help**: Integrated philosophy and definitions (tap 'i' icons) to explain the *meaning* of each activity.
 - **Physical Depth & Sheen**: Multi-layered Benthal shadows and inner highlights for a tactile hardware feel.
 - **Adaptive Variable Typography**: Living text transitions utilizing the full Inter Variable axis.
 - **Horological Precision**: Synchronized timers and a high-precision progress line.

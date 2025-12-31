@@ -13,6 +13,7 @@ export interface Settings {
 	workdayEnd: number; // Hour (0-23)
 	hasSeenIntro: boolean;
 	timeFormat: "12h" | "24h";
+	projectName: string;
 }
 
 const DEFAULT_SETTINGS: Settings = {
@@ -20,6 +21,7 @@ const DEFAULT_SETTINGS: Settings = {
 	workdayEnd: 17,
 	hasSeenIntro: false,
 	timeFormat: "24h",
+	projectName: "Primary Project",
 };
 
 export const SettingsStore = {
