@@ -12,8 +12,19 @@ export default function IntroOverlay({ onDismiss }: Props) {
 			exit={{ opacity: 0, transition: { duration: 1.5, ease: "easeOut" } }}
 		>
 			<div className="intro-content">
-				<p>This app shows what a normal office day feels like.</p>
-				<p>There is nothing to do.</p>
+				<p
+					style={{
+						fontWeight: 600,
+						letterSpacing: "0.1em",
+						marginBottom: "0.5rem",
+					}}
+				>
+					WORKRHYTHM
+				</p>
+				<p>A re-entry companion.</p>
+				<p style={{ fontSize: "1.1rem", opacity: 0.7 }}>
+					It simulates the flow of a workday.
+				</p>
 				<span className="intro-hint">Tap to begin</span>
 			</div>
 		</motion.div>

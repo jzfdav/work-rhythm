@@ -1,9 +1,12 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Settings as SettingsIcon } from "lucide-react";
+import { HelpCircle, Settings as SettingsIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import ActivityDisplay from "./components/ActivityDisplay";
+import CalendarButton from "./components/CalendarButton";
+import CalendarModal from "./components/CalendarModal";
 import DynamicBackground from "./components/DynamicBackground";
 import IntroOverlay from "./components/IntroOverlay";
+import PhilosophyModal from "./components/PhilosophyModal";
 import ProgressLine from "./components/ProgressLine";
 import SettingsModal from "./components/SettingsModal";
 import { getSchedule } from "./logic/scheduler";
@@ -15,13 +18,15 @@ export default function App() {
 	const [settings, setSettings] = useState<Settings>(SettingsStore.load());
 	const now = useCurrentTime();
 	const [showSettings, setShowSettings] = useState(false);
+	const [showCalendar, setShowCalendar] = useState(false);
+	const [showPhilosophy, setShowPhilosophy] = useState(false);
 	const [showIntro, setShowIntro] = useState(!settings.hasSeenIntro);
 
 	const schedule = getSchedule(now, settings);
 
 	// Update title
 	useEffect(() => {
-		document.title = `${schedule.label} - Office Simulator`;
+		document.title = `${schedule.label} - WorkRhythm`;
 	}, [schedule.label]);
 
 	// Update theme-color for PWA status bar
@@ -49,6 +54,24 @@ export default function App() {
 				)}
 			</AnimatePresence>
 
+			<motion.button
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 0.3 }}
+				whileHover={{ opacity: 1 }}
+				transition={{ delay: 2, duration: 1 }}
+				onClick={() => setShowPhilosophy(true)}
+				style={{
+					position: "fixed",
+					top: "2rem",
+					right: "2rem",
+					color: "#fff",
+					zIndex: 40,
+					cursor: "pointer",
+				}}
+			>
+				<HelpCircle size={24} strokeWidth={1.5} />
+			</motion.button>
+
 			<ActivityDisplay key={schedule.label} activity={schedule} />
 
 			<motion.button
@@ -63,11 +86,24 @@ export default function App() {
 				<SettingsIcon size={18} strokeWidth={1.5} />
 			</motion.button>
 
+			<CalendarButton onClick={() => setShowCalendar(true)} />
+
+			<CalendarModal
+				isOpen={showCalendar}
+				onClose={() => setShowCalendar(false)}
+				settings={settings}
+			/>
+
 			<SettingsModal
 				isOpen={showSettings}
 				onClose={() => setShowSettings(false)}
 				currentSettings={settings}
 				onUpdate={setSettings}
+			/>
+
+			<PhilosophyModal
+				isOpen={showPhilosophy}
+				onClose={() => setShowPhilosophy(false)}
 			/>
 		</main>
 	);

@@ -1,4 +1,5 @@
-# Office Simulator
+# WorkRhythm
+> *(formerly Office Simulator)*
 
 <p align="left">
   <a href="https://github.com/jzfdav/office-simulator/actions/workflows/deploy.yml">
@@ -25,22 +26,35 @@ A calm, passive, clock-like PWA built to help professionals transition back into
 
 ## 🕰️ Philosophy & Purpose
 
-Office Simulator is a **re-entry companion** for professionals returning to the workplace after a long leave of absence—whether it’s a vacation, parental leave, recovery, or a career break.
+**This is not a game.**
+
+WorkRhythm is a **re-entry companion** for professionals returning to the workplace after a long leave of absence—whether it’s a vacation, parental leave, recovery, or a career break.
 
 Re-adjusting to the rigid structure, recurring meetings, and mental tempo of an office day can be a jarring experience. This app bridges that gap by providing a **low-stakes, simulated workday environment** that helps re-calibrate your internal clock.
 
 - **Mental Re-calibration**: Simulated meetings and tasks help set your mind for a structured day, easing the transition from absolute freedom back to a regular schedule.
-- **Rhythmic Simulation**: Procedurally generated daily and weekly calendars create a familiar office ebb and flow—some days are meeting-heavy, while others focus on "Deep Work."
-- **Passive Preparation**: It doesn't give you real work; it gives you the *rhythm* of work. It’s designed to be a horological anchor that prepares you mentally for the real deal.
+- **No Guilt, No Score**: Unlike games, there is no "winning" or "losing". Miss a meeting? That's fine. Ignore the app for hours? Also fine. The goal is simply to be *present* with the rhythm.
+- **Calm by Default**: Language is neutral ("Urgent Task" instead of "Firefighting"). Dark mode is default. Interactions are fluid and quiet.
 
 ## ✨ Features
 
 - **Chrono-Dynamic Background**: Procedural mesh gradients that evolve minute-by-minute.
+- **Dynamic Agenda**: Unique daily schedules generated with diverse "flavors" (Meeting Intesive, Deep Focus, etc.).
+- **Workload Balance**: Visualizes the varying intensity of a workday, from "chaotic" fire-fighting to "balanced" flows.
 - **Physical Depth & Sheen**: Multi-layered Benthal shadows and inner highlights for a tactile hardware feel.
 - **Adaptive Variable Typography**: Living text transitions utilizing the full Inter Variable axis.
 - **Horological Precision**: Synchronized timers and a high-precision progress line.
 - **Handheld Ergonomics**: All tertiary controls optimized for the "Thumb Zone".
 - **Advanced PWA**: Edge-to-edge immersion with dynamic system-level theme-color syncing.
+
+## 🔒 Privacy & Data
+
+**Zero Telemetry. 100% Offline.**
+
+We believe that your recovery and work habits are private.
+- **No Analytics**: We do not track how you use the app.
+- **No Cloud**: All data lives in your browser's `localStorage`.
+- **Data Sovereignty**: You can **Export** your data to JSON or **Reset Everything** at any time from the Settings menu.
 
 ## 🚀 Getting Started
 

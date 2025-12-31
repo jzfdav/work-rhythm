@@ -185,6 +185,43 @@ html {
 	transform: translateX(-50%) scale(0.96);
 }
 
+/* Calendar Button (Top Right of Pill or Separate) */
+.calendar-trigger {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	background: rgba(255, 255, 255, 0.05);
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	color: rgba(255, 255, 255, 0.6);
+	cursor: pointer;
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+	z-index: 10;
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow:
+		0 10px 30px -10px rgba(0, 0, 0, 0.5),
+		0 0 0 1px rgba(255, 255, 255, 0.03),
+		inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.calendar-trigger:hover {
+	background: rgba(255, 255, 255, 0.1);
+	border-color: rgba(255, 255, 255, 0.15);
+	color: #fff;
+	transform: scale(1.05);
+}
+
+.calendar-trigger:active {
+	background: rgba(255, 255, 255, 0.15);
+	transform: scale(0.96);
+}
+
 /* Modal */
 .modal-backdrop {
 	position: fixed;
@@ -506,4 +543,134 @@ html {
 	.activity-label {
 		font-size: 2.5rem;
 	}
+}
+
+/* Calendar Modal Styles */
+.calendar-modal {
+	display: flex;
+	flex-direction: column;
+	max-height: 80vh;
+}
+
+.flavor-banner {
+	background: rgba(255, 255, 255, 0.03);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	border-radius: 12px;
+	padding: 1rem;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.flavor-label {
+	display: block;
+	font-size: 0.75rem;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: var(--text-dim);
+	margin-bottom: 0.5rem;
+}
+
+.flavor-value {
+	font-size: 1.1rem;
+	font-weight: 500;
+	letter-spacing: 0.02em;
+	color: #fff;
+}
+
+.agenda-list {
+	flex: 1;
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding-right: 0.5rem;
+}
+
+/* Custom scrollbar for agenda */
+.agenda-list::-webkit-scrollbar {
+	width: 6px;
+}
+
+.agenda-list::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+.agenda-list::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 10px;
+}
+
+.empty-state {
+	text-align: center;
+	padding: 2rem;
+	color: var(--text-dim);
+	font-style: italic;
+}
+
+.agenda-item {
+	display: flex;
+	gap: 1rem;
+	padding: 1rem;
+	border-radius: 12px;
+	transition: all 0.2s;
+	border: 1px solid transparent;
+}
+
+.agenda-item.work {
+	background: rgba(255, 255, 255, 0.02);
+}
+
+.agenda-item.meeting {
+	background: rgba(50, 100, 255, 0.08);
+	/* Subtle blue tint */
+}
+
+.agenda-item.break {
+	background: rgba(100, 255, 100, 0.06);
+	/* Subtle green tint */
+}
+
+.agenda-item.active {
+	background: rgba(255, 255, 255, 0.12);
+	border-color: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.time-col {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-width: 60px;
+	border-right: 1px solid rgba(255, 255, 255, 0.05);
+	padding-right: 1rem;
+	justify-content: center;
+}
+
+.time-start {
+	font-size: 0.9rem;
+	font-weight: 500;
+	color: var(--text);
+}
+
+.duration {
+	font-size: 0.7rem;
+	color: var(--text-dim);
+	margin-top: 4px;
+}
+
+.info-col {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.item-label {
+	font-size: 0.95rem;
+	font-weight: 500;
+	margin-bottom: 2px;
+}
+
+.item-context {
+	font-size: 0.8rem;
+	color: var(--text-dim);
 }

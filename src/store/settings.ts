@@ -44,4 +44,30 @@ export const SettingsStore = {
 			return this.load();
 		}
 	},
+
+	reset() {
+		localStorage.removeItem(STORAGE_KEY);
+		window.location.reload();
+	},
+
+	exportData() {
+		try {
+			const data = this.load();
+			const blob = new Blob([JSON.stringify(data, null, 2)], {
+				type: "application/json",
+			});
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement("a");
+			a.href = url;
+			a.download = `office-simulator-data-${new Date()
+				.toISOString()
+				.slice(0, 10)}.json`;
+			document.body.appendChild(a);
+			a.click();
+			document.body.removeChild(a);
+			URL.revokeObjectURL(url);
+		} catch (e) {
+			console.error("Export failed", e);
+		}
+	},
 };

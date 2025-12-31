@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { Check, X } from "lucide-react";
+import { Check, Download, Trash2, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { type Settings, SettingsStore } from "../store/settings";
 import SegmentedControl from "./SegmentedControl";
@@ -147,6 +147,57 @@ export default function SettingsModal({
 							>
 								<Check size={16} strokeWidth={3} /> Save
 							</button>
+						</div>
+
+						<div className="modal-section" style={{ marginTop: "2rem" }}>
+							<h3
+								className="section-label"
+								style={{
+									fontSize: "0.75rem",
+									textTransform: "uppercase",
+									letterSpacing: "0.1em",
+									color: "rgba(255,255,255,0.4)",
+									marginBottom: "1rem",
+									marginTop: "1.5rem",
+									paddingTop: "1.5rem",
+									borderTop: "1px solid rgba(255,255,255,0.1)",
+								}}
+							>
+								Data & Privacy
+							</h3>
+
+							<div style={{ display: "flex", gap: "0.5rem" }}>
+								<button
+									type="button"
+									onClick={() => SettingsStore.exportData()}
+									className="cancel-btn"
+									style={{ flex: 1, fontSize: "0.8rem", padding: "0.6rem" }}
+								>
+									<Download size={14} style={{ marginRight: 6 }} /> Export JSON
+								</button>
+								<button
+									type="button"
+									onClick={() => {
+										if (
+											window.confirm(
+												"Are you sure? This will maintain absolute privacy by nuking all local data and reloading the app.",
+											)
+										) {
+											SettingsStore.reset();
+										}
+									}}
+									className="cancel-btn"
+									style={{
+										flex: 1,
+										fontSize: "0.8rem",
+										padding: "0.6rem",
+										borderColor: "rgba(255, 100, 100, 0.3)",
+										color: "rgba(255, 150, 150, 0.8)",
+									}}
+								>
+									<Trash2 size={14} style={{ marginRight: 6 }} /> Reset All
+								</button>
+							</div>
 						</div>
 
 						<div className="credits-footer">
