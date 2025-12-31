@@ -1,7 +1,7 @@
 # Functional Requirements
 
 ## Core Functionality
-- **Display Activity**: The UI must prominently display the current "office activity" (e.g., "Team Sync", "Lunch") based on the user's local system time.
+- **Display Activity**: The UI must prominently display the current "workplace activity" (e.g., "Team Sync", "Lunch") based on the user's local system time.
 - **Display Context**: A secondary label must provide context (e.g., "Morning", "Afternoon").
 - **Real-time Updates**: The display must update automatically as time progresses, accurate to the minute.
 - **Offline Capability**: The app must function fully without an internet connection.

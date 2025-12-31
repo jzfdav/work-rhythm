@@ -21,7 +21,7 @@ const DEFINITIONS: Record<string, string> = {
 };
 
 const GENERIC_DEFINITION =
-	"A simulated office activity designed to create rhythmic structure.";
+	"A simulated workplace activity designed to create rhythmic structure.";
 
 export default function ActivityInfoModal({
 	isOpen,

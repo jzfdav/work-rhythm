@@ -1,14 +1,14 @@
-# Office Simulator PWA — Philosophy & Design Intent
+# WorkRhythm PWA — Philosophy & Design Intent
 
 ## Purpose
 
 This application is a **time observer**, not a productivity tool.
 
-Its sole purpose is to simulate the *rhythm* of a normal office workday
+Its sole purpose is to simulate the *rhythm* of a normal workday
 (meetings, focus blocks, breaks) without requiring the user to do any work,
 take any action, or make any decisions.
 
-The app exists to help users mentally re-acclimate to office time structure
+The app exists to help users mentally re-acclimate to workplace time structure
 after extended absence (vacation, leave, illness, burnout).
 
 If the app ever feels like it is asking something of the user, it is wrong.
@@ -24,7 +24,7 @@ If the app ever feels like it is asking something of the user, it is wrong.
 - A clock does not congratulate or warn.
 - A clock simply reflects the current moment.
 
-This app reflects *what kind of office time it is right now*.
+This app reflects *what kind of workplace time it is right now*.
 
 ---
 

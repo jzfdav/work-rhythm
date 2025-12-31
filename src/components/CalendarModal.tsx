@@ -120,9 +120,35 @@ export default function CalendarModal({ isOpen, onClose, settings }: Props) {
 									}
 
 									return (
-										<div
+										<motion.div
 											key={`${item.label}-${item.start}`}
 											className={`agenda-item ${isCurrent ? "active" : ""} ${item.type}`}
+											animate={
+												isCurrent
+													? {
+															scale: [1, 1.02, 1],
+															backgroundColor: [
+																"rgba(255, 255, 255, 0.12)",
+																"rgba(255, 255, 255, 0.16)",
+																"rgba(255, 255, 255, 0.12)",
+															],
+															borderColor: [
+																"rgba(255, 255, 255, 0.1)",
+																"rgba(255, 255, 255, 0.3)",
+																"rgba(255, 255, 255, 0.1)",
+															],
+														}
+													: undefined
+											}
+											transition={
+												isCurrent
+													? {
+															duration: 4,
+															repeat: Number.POSITIVE_INFINITY,
+															ease: "easeInOut",
+														}
+													: undefined
+											}
 										>
 											<div className="time-col">
 												<span className="time-start">
@@ -136,7 +162,7 @@ export default function CalendarModal({ isOpen, onClose, settings }: Props) {
 												<span className="item-label">{item.label}</span>
 												<span className="item-context">{item.context}</span>
 											</div>
-										</div>
+										</motion.div>
 									);
 								})
 							)}

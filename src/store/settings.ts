@@ -6,7 +6,7 @@
  * Never stores progress, state, or streaks.
  */
 
-const STORAGE_KEY = "office-simulator-v1-settings";
+const STORAGE_KEY = "work-rhythm-v1-settings";
 
 export interface Settings {
 	workdayStart: number; // Hour (0-23)
@@ -61,7 +61,7 @@ export const SettingsStore = {
 			const url = URL.createObjectURL(blob);
 			const a = document.createElement("a");
 			a.href = url;
-			a.download = `office-simulator-data-${new Date()
+			a.download = `work-rhythm-data-${new Date()
 				.toISOString()
 				.slice(0, 10)}.json`;
 			document.body.appendChild(a);

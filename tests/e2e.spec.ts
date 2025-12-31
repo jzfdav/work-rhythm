@@ -4,9 +4,7 @@ test("App Start - Basic Flow", async ({ page }) => {
 	await page.goto("/");
 
 	// 1. Check for Intro Overlay
-	await expect(
-		page.locator("text=This app shows what a normal office day feels like"),
-	).toBeVisible();
+	await expect(page.locator("text=A re-entry companion")).toBeVisible();
 
 	// 2. Dismiss Intro
 	await page.click(".intro-overlay");

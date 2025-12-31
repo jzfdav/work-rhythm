@@ -385,6 +385,11 @@ html {
 	transition: all 0.2s;
 }
 
+.cancel-btn:active {
+	background: rgba(255, 255, 255, 0.15);
+	transform: scale(0.96);
+}
+
 .cancel-btn:hover {
 	background: rgba(255, 255, 255, 0.1);
 	color: var(--text);
@@ -420,7 +425,7 @@ html {
 }
 
 .save-btn:active {
-	transform: translateY(0);
+	transform: translateY(0) scale(0.96);
 }
 
 /* Credits Footer */

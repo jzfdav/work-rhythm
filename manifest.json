@@ -1,6 +1,6 @@
 {
-	"name": "Office Simulator",
-	"short_name": "Office",
+	"name": "WorkRhythm",
+	"short_name": "WorkRhythm",
 	"start_url": "./index.html",
 	"display": "standalone",
 	"background_color": "#121212",

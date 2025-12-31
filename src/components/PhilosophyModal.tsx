@@ -48,7 +48,7 @@ export default function PhilosophyModal({ isOpen, onClose }: Props) {
 							</p>
 
 							<p>
-								Returning to the office after a long absence—whether for
+								Returning to the workplace after a long absence—whether for
 								vacation, parental leave, or recovery—can be jarring. The rigid
 								schedules and constant cognitive shifts require a specific
 								mental endurance.

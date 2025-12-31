@@ -4,7 +4,7 @@ import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
 export default defineConfig({
-	base: "/office-simulator/",
+	base: "/work-rhythm/",
 	define: {
 		__BUILD_TIME__: JSON.stringify(new Date().toISOString()),
 	},
@@ -14,9 +14,9 @@ export default defineConfig({
 			registerType: "autoUpdate",
 			includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
 			manifest: {
-				name: "Office Simulator",
-				short_name: "Office",
-				description: "A calm office simulator.",
+				name: "WorkRhythm",
+				short_name: "WorkRhythm",
+				description: "A calm work rhythm simulator.",
 				theme_color: "#050505",
 				background_color: "#050505",
 				display: "standalone",
