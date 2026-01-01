@@ -74,19 +74,21 @@ export default function App() {
 
 			<ActivityDisplay key={schedule.label} activity={schedule} />
 
-			<motion.button
-				type="button"
-				className="settings-trigger"
-				onClick={() => setShowSettings(true)}
-				aria-label="Settings"
-				initial={{ y: 20, opacity: 0, x: "-50%" }}
-				animate={{ y: 0, opacity: 1, x: "-50%" }}
-				transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
-			>
-				<SettingsIcon size={18} strokeWidth={1.5} />
-			</motion.button>
+			<div className="controls-dock">
+				<motion.button
+					type="button"
+					className="dock-btn"
+					onClick={() => setShowSettings(true)}
+					aria-label="Settings"
+					initial={{ y: 20, opacity: 0 }}
+					animate={{ y: 0, opacity: 1 }}
+					transition={{ delay: 1, duration: 0.8, ease: "easeOut" }}
+				>
+					<SettingsIcon size={22} strokeWidth={1.5} />
+				</motion.button>
 
-			<CalendarButton onClick={() => setShowCalendar(true)} />
+				<CalendarButton onClick={() => setShowCalendar(true)} />
+			</div>
 
 			<CalendarModal
 				isOpen={showCalendar}

@@ -140,65 +140,28 @@ html {
 	font-weight: 300;
 }
 
-/* Settings Trigger (Bottom Pill) */
-.settings-trigger {
+/* Unified Bottom Controls Dock */
+.controls-dock {
 	position: fixed;
 	bottom: 2rem;
 	left: 50%;
 	transform: translateX(-50%);
-	background: rgba(255, 255, 255, 0.05);
-	border: 1px solid rgba(255, 255, 255, 0.08);
-	color: rgba(255, 255, 255, 0.6);
-	cursor: pointer;
-	padding: 10px 32px;
-	border-radius: 100px;
-	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-	z-index: 10;
-	backdrop-filter: blur(12px);
-	-webkit-backdrop-filter: blur(12px);
 	display: flex;
+	gap: 1.5rem;
+	z-index: 10;
 	align-items: center;
-	gap: 12px;
-	box-shadow:
-		0 10px 30px -10px rgba(0, 0, 0, 0.5),
-		0 0 0 1px rgba(255, 255, 255, 0.03),
-		inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-.settings-trigger::after {
-	content: "SETTINGS";
-	font-size: 0.75rem;
-	font-weight: 600;
-	letter-spacing: 0.15em;
-	opacity: 0.7;
-}
-
-.settings-trigger:hover {
-	background: rgba(255, 255, 255, 0.1);
-	border-color: rgba(255, 255, 255, 0.15);
-	color: #fff;
-	padding: 10px 40px;
-}
-
-.settings-trigger:active {
-	background: rgba(255, 255, 255, 0.15);
-	transform: translateX(-50%) scale(0.96);
-}
-
-/* Calendar Button (Top Right of Pill or Separate) */
-.calendar-trigger {
-	position: fixed;
-	bottom: 2rem;
-	right: 2rem;
+/* Base style for dock buttons (Settings & Calendar) */
+.dock-btn {
 	background: rgba(255, 255, 255, 0.05);
 	border: 1px solid rgba(255, 255, 255, 0.08);
 	color: rgba(255, 255, 255, 0.6);
 	cursor: pointer;
-	width: 48px;
-	height: 48px;
+	width: 56px;
+	height: 56px;
 	border-radius: 50%;
 	transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-	z-index: 10;
 	backdrop-filter: blur(12px);
 	-webkit-backdrop-filter: blur(12px);
 	display: flex;
@@ -210,14 +173,18 @@ html {
 		inset 0 1px 1px rgba(255, 255, 255, 0.1);
 }
 
-.calendar-trigger:hover {
+.dock-btn:hover {
 	background: rgba(255, 255, 255, 0.1);
 	border-color: rgba(255, 255, 255, 0.15);
 	color: #fff;
 	transform: scale(1.05);
+	box-shadow:
+		0 15px 35px -10px rgba(0, 0, 0, 0.6),
+		0 0 0 1px rgba(255, 255, 255, 0.05),
+		inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
 
-.calendar-trigger:active {
+.dock-btn:active {
 	background: rgba(255, 255, 255, 0.15);
 	transform: scale(0.96);
 }
