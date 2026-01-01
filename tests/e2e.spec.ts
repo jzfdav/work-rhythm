@@ -22,10 +22,10 @@ test("Settings Modal", async ({ page }) => {
 	await page.click(".intro-overlay"); // Dismiss
 
 	// Open Settings
-	await page.click(".settings-trigger");
+	await page.click('button[aria-label="Settings"]');
 	await expect(page.locator("text=Preferences")).toBeVisible();
 
 	// Close Settings
 	await page.click('button:has-text("Save")');
-	await expect(page.locator("text=Workday Window")).not.toBeVisible();
+	await expect(page.locator("text=Preferences")).not.toBeVisible();
 });
