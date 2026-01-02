@@ -1,5 +1,5 @@
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { VitePWA } from "vite-plugin-pwa";
 
 // https://vite.dev/config/
@@ -7,6 +7,10 @@ export default defineConfig({
 	base: "/work-rhythm/",
 	define: {
 		__BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+	},
+	test: {
+		environment: "jsdom",
+		exclude: ["**/node_modules/**", "**/dist/**", "**/e2e/**"],
 	},
 	plugins: [
 		react(),

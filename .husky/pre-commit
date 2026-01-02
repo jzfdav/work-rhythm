@@ -1,2 +1,1 @@
-npx biome check src
-npx playwright test
+pnpm exec lint-staged
